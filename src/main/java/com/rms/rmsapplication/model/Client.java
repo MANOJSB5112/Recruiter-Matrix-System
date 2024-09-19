@@ -20,6 +20,6 @@ public class Client extends BaseModel {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "client")
     private List<Job> jobs;
 
-    @OneToOne(mappedBy = "team")  // Client owns the reference to Team
+    @ManyToOne // Client owns the reference to Team
     private Team team;
 }
