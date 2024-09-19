@@ -1,9 +1,16 @@
 package com.rms.rmsapplication.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
+@Builder
+@Entity
 public class Recruiter extends BaseModel {
     private String name;
     private String phoneNumber;
@@ -13,7 +20,7 @@ public class Recruiter extends BaseModel {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private  Account account;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private Designation designation;
 
     @ManyToOne
