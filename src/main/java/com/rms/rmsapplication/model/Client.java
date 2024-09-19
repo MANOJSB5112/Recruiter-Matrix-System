@@ -1,6 +1,7 @@
 package com.rms.rmsapplication.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
+@AllArgsConstructor
 public class Client extends BaseModel {
     private String name;
 
@@ -20,6 +22,10 @@ public class Client extends BaseModel {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "client")
     private List<Job> jobs;
 
-    @ManyToOne // Client owns the reference to Team
+    @ManyToOne
     private Team team;
+
+    public Client() {
+
+    }
 }

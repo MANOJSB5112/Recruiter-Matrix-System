@@ -2,6 +2,7 @@ package com.rms.rmsapplication.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @Entity
+@AllArgsConstructor
 public class Interview extends BaseModel {
     private  String description;
 
@@ -19,11 +21,15 @@ public class Interview extends BaseModel {
     private Candidate candidate;
 
     @ManyToOne
-    private Recruiter recruiter;
+    private Employee recruiter;
 
     @ManyToOne
     private  Job job;
 
-    private  LocalDateTime interviewDate;  // Handles both date and time
+    private  LocalDateTime interviewDate;
     private  String interviewer;
+    private String feedback;
+    public Interview() {
+
+    }
 }

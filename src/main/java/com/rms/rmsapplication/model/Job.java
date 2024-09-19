@@ -1,9 +1,7 @@
 package com.rms.rmsapplication.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,6 +9,8 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Job extends BaseModel {
     private String description;
 
@@ -31,4 +31,6 @@ public class Job extends BaseModel {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "job")
     private  List<JobOffer> jobOffers;
+    private String feedBack;
+    Boolean isActive;
 }

@@ -2,9 +2,7 @@ package com.rms.rmsapplication.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,18 +10,16 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class JobOffer extends BaseModel {
-    private  String description;
-
+    private  String details;
     @ManyToOne
     private  Candidate candidate;
-
     @ManyToOne
-    private  Recruiter recruiter;
-
+    private  Employee recruiter;
     @ManyToOne
     private  Job job;
-
     private  Double payRate;
     private  LocalDateTime startDate;
     private  LocalDateTime endDate;

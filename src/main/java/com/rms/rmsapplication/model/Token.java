@@ -4,21 +4,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
+import java.util.Date;
+
 @Getter
 @Setter
-@Builder
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Submission extends BaseModel {
-    private  String description;
-
+public class Token extends BaseModel{
     @ManyToOne
-    private Job job;
-
-    @ManyToOne
-    private Employee recruiter;
-
-    @ManyToOne
-    private Candidate candidate;
+    private Employee user;
+    private String value;
+    private Date expiryAt;
 }

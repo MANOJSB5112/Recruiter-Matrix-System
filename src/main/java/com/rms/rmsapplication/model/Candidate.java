@@ -2,6 +2,7 @@ package com.rms.rmsapplication.model;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
+@AllArgsConstructor
 public class Candidate extends BaseModel {
     private String name;
     private String email;
@@ -19,17 +21,22 @@ public class Candidate extends BaseModel {
     private String currentCompany;
     private Long currentSalary;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "candidate")
-    private List<Submission> submissions;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Address address;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "candidate")
-    private  List<Interview> interviews;
+    private List<Submission> jobApplication;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "candidate")
+    private  List<Interview> jobInterviews;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "candidate")
     private List<JobOffer> jobOffers;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Address address;
+
+    public Candidate() {
+
+    }
 }
 
 

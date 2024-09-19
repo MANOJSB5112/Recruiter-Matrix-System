@@ -1,9 +1,7 @@
 package com.rms.rmsapplication.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,14 +9,16 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Team extends BaseModel {
     private String teamName;
 
     @ManyToOne
-    private  Manager manager;
+    private  Employee manager;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "team")
-    private  List<Recruiter> recruiters;
+    private  List<Employee> members;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "team")
     private  List<Client> clients;
