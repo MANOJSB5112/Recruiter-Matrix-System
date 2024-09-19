@@ -1,9 +1,9 @@
 package com.rms.rmsapplication.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -14,16 +14,12 @@ import java.util.List;
 public class Employee extends BaseModel {
     private String name;
     private String email;
-    private String user_name;
-    private String password;
     private String phoneNumber;
-    @ManyToMany(fetch = FetchType.LAZY)
-    private  List<Roles> roles;
+    private String designation;
     @ManyToOne
     @JoinColumn(name = "manager_id")
     private Employee manager;
     @ManyToOne
     private Team team;
-
     private boolean currentEmployee;
 }

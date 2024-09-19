@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @Entity
 @AllArgsConstructor
-public class Client extends BaseModel {
+public class Company extends BaseModel {
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -25,7 +25,7 @@ public class Client extends BaseModel {
     @ManyToOne
     private Team team;
 
-    public Client() {
+    public Company() {
 
     }
 }

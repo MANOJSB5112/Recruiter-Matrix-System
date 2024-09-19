@@ -21,5 +21,5 @@ public class Team extends BaseModel {
     private  List<Employee> members;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "team")
-    private  List<Client> clients;
+    private  List<Company> clients;
 }

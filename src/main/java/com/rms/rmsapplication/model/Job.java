@@ -15,7 +15,7 @@ public class Job extends BaseModel {
     private String description;
 
     @ManyToOne
-    private  Client client;
+    private Company client;
 
     private Double billRate;
     private String contractDuration;
