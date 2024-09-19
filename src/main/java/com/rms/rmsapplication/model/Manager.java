@@ -1,4 +1,12 @@
 package com.rms.rmsapplication.model;
 
-public class Manager {
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
+
+public class Manager extends BaseModel {
+    private Long empId;
+
+    @OneToMany(mappedBy = "manager")
+    private List<Team> teams;
 }

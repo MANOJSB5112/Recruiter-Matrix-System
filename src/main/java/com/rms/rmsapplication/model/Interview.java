@@ -1,14 +1,21 @@
 package com.rms.rmsapplication.model;
 
-import java.util.Date;
+import jakarta.persistence.ManyToOne;
 
-public class Interview {
-    String description;
-    Candidate candidate;
-    Recruiter recruiter;
-    Client client;
-    Date date;
-    int startTime;
-    int endTime;
-    String interviewer;
+import java.time.LocalDateTime;
+
+public class Interview extends BaseModel {
+    private  String description;
+
+    @ManyToOne
+    private Candidate candidate;
+
+    @ManyToOne
+    private Recruiter recruiter;
+
+    @ManyToOne
+    private  Job job;
+
+    private  LocalDateTime interviewDate;  // Handles both date and time
+    private  String interviewer;
 }
