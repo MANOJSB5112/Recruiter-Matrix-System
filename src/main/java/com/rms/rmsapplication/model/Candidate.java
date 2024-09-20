@@ -25,17 +25,9 @@ public class Candidate extends BaseModel {
     private Address address;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "candidate")
-    private List<Submission> jobApplication;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "candidate")
-    private  List<Interview> jobInterviews;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "candidate")
-    private List<JobOffer> jobOffers;
-
+    private List<Submission> jobApplications;
 
     public Candidate() {
-
     }
 }
 

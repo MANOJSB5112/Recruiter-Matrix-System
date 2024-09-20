@@ -1,9 +1,8 @@
 package com.rms.rmsapplication.controller;
 
 
-import com.rms.rmsapplication.dtos.CreateEmpDto;
-import com.rms.rmsapplication.service.AdminService;
-import com.rms.rmsapplication.service.AdminServiceImpl;
+import com.rms.rmsapplication.dtos.EmpCreationDto;
+import com.rms.rmsapplication.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,21 +10,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin")
 public class AdminController {
 
-    AdminService adminService;
+    EmployeeService employeeService;
 
-    AdminController (AdminServiceImpl adminServiceImpl)
+    AdminController (EmployeeService employeeService)
     {
-        this.adminService=adminServiceImpl;
+        this.employeeService=employeeService;
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<String> createEmployee(CreateEmpDto createEmpDto)
+    public ResponseEntity<String> createEmployee(EmpCreationDto empCreationDto)
     {
-        String name=createEmpDto.getName();
-        String email=createEmpDto.getEmail();
-        String phoneNumber=createEmpDto.getPhoneNumber();
-        String designation=createEmpDto.getDesignation();
-        adminService.createEmployee(name,email,phoneNumber,designation);
+        String name=empCreationDto.getName();
+        String email=empCreationDto.getEmail();
+        String phoneNumber=empCreationDto.getPhoneNumber();
+        String designation=empCreationDto.getDesignation();
+        employeeService.createEmployee(name,email,phoneNumber,designation);
         String message="User Created Successful";
         return ResponseEntity.ok(message);
     }

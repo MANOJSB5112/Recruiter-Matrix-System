@@ -12,11 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Job extends BaseModel {
+    private String Title;
     private String description;
-
     @ManyToOne
     private Company client;
-
     private Double billRate;
     private String contractDuration;
 
@@ -26,11 +25,6 @@ public class Job extends BaseModel {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "job")
     private  List<Submission> submissions;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "job")
-    private  List<Interview> interviews;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "job")
-    private  List<JobOffer> jobOffers;
     private String feedBack;
     Boolean isActive;
 }

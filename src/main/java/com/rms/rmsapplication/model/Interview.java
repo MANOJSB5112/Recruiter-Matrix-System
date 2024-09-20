@@ -1,11 +1,9 @@
 package com.rms.rmsapplication.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,22 +12,16 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 public class Interview extends BaseModel {
-    private  String description;
+    private String description;
 
     @ManyToOne
-    private Candidate candidate;
+    @JoinColumn(name = "submission_id")
+    private Submission submission;
 
-    @ManyToOne
-    private Employee recruiter;
-
-    @ManyToOne
-    private  Job job;
-
-    private  LocalDateTime interviewDate;
-    private  String interviewer;
+    private LocalDateTime interviewDate;
+    private String interviewer;
     private String feedback;
-    public Interview() {
 
-    }
 }

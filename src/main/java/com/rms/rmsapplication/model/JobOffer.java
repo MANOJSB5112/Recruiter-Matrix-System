@@ -1,6 +1,7 @@
 package com.rms.rmsapplication.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
@@ -13,20 +14,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobOffer extends BaseModel {
-    private  String details;
-    @ManyToOne
-    private  Candidate candidate;
-    @ManyToOne
-    private  Employee recruiter;
-    @ManyToOne
-    private  Job job;
-    private  Double payRate;
-    private  LocalDateTime startDate;
-    private  LocalDateTime endDate;
-}
+    private String details;
 
-/*
-   JobOffer-Candidate  -M:1
-    1 -> 1
-     M  <- 1
- */
+    @ManyToOne
+    @JoinColumn(name = "submission_id")
+    private Submission submission;
+
+    private Double payRate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+
+}

@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 @Primary
 @Service
-public class AdminServiceImpl implements AdminService{
+public class EmployeeServiceImpl implements EmployeeService {
     EmployeeRepo employeeRepo;
 
-    AdminServiceImpl(EmployeeRepo employeeRepo)
+    EmployeeServiceImpl(EmployeeRepo employeeRepo)
     {
         this.employeeRepo=employeeRepo;
     }

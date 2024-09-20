@@ -1,5 +1,4 @@
 package com.rms.rmsapplication.service;
 
-public interface ManagerService {
-
+public class JobOfferServiceImpl {
 }
