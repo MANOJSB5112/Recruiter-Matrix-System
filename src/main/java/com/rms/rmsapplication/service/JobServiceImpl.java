@@ -33,9 +33,7 @@ public class JobServiceImpl implements JobService{
         address.setCity(jobCreationDto.getCity());
         address.setCountry(jobCreationDto.getCountry());
         job.setAddress(address);
+        job.setIsActive(true);
         jobRepo.save(job);
     }
-
-
-
 }

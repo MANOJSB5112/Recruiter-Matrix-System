@@ -66,7 +66,7 @@ public class ClientController {
         }
     }
 
-    @PatchMapping("/submissionFeedback")
+    @PatchMapping("/submission/feedback")
     public ResponseEntity<String> submissionFeedback(@RequestBody FeedBackDto feedBackDto) {
         try {
             submissionService.submissionFeedback(feedBackDto);
@@ -77,7 +77,7 @@ public class ClientController {
         }
     }
 
-    @PatchMapping("/interviewFeedback")
+    @PatchMapping("/interview/feedback")
     public ResponseEntity<String> interviewFeedback(@RequestBody FeedBackDto feedBackDto) {
         try {
             interviewService.interviewFeedback(feedBackDto);
