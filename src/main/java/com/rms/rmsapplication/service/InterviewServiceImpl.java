@@ -6,9 +6,13 @@ import com.rms.rmsapplication.model.Interview;
 import com.rms.rmsapplication.model.Submission;
 import com.rms.rmsapplication.repos.InterviewRepo;
 import com.rms.rmsapplication.repos.SubmissionRepo;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
+@Primary
 public class InterviewServiceImpl implements InterviewService{
 
     SubmissionRepo submissionRepo;
