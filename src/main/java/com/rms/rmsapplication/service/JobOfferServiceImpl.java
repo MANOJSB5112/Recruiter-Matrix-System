@@ -1,4 +1,15 @@
 package com.rms.rmsapplication.service;
 
-public class JobOfferServiceImpl {
+import com.rms.rmsapplication.dtos.JobOfferDto;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
+
+@Service
+@Primary
+public class JobOfferServiceImpl implements JobOfferService{
+
+    @Override
+    public void newJobOffer(JobOfferDto jobOfferDto) {
+
+    }
 }

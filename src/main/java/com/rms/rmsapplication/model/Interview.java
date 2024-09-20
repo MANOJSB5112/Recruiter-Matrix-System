@@ -22,6 +22,7 @@ public class Interview extends BaseModel {
 
     private LocalDateTime interviewDate;
     private String interviewer;
+    private String interviewMode;
     private String feedback;
 
 }

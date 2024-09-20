@@ -6,9 +6,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SubmissionRepo extends JpaRepository<Submission,Long> {
+
+
+   @Override
+   Optional<Submission> findById(Long aLong);
 
    Long countSubmissionByCandidate_Id(Long id);
 

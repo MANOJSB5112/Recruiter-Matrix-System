@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface InterviewRepo extends JpaRepository<Interview, Long> {
@@ -17,4 +18,7 @@ public interface InterviewRepo extends JpaRepository<Interview, Long> {
     @Query("SELECT i FROM Interview i WHERE i.submission.id IN " +
             "(SELECT s.id FROM Submission s WHERE s.candidate.id = :candidateId)")
     List<Interview> findInterviewsByCandidateId(@Param("candidateId") Long candidateId);
+
+    @Override
+    Optional<Interview> findById(Long aLong);
 }

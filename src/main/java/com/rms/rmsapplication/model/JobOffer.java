@@ -1,8 +1,6 @@
 package com.rms.rmsapplication.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,5 +21,6 @@ public class JobOffer extends BaseModel {
     private Double payRate;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-
+    @Enumerated(EnumType.ORDINAL)
+    private OfferStatus offerStatus;
 }

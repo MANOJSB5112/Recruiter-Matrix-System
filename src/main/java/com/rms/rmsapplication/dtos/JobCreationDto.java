@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class JobCreationDto {
-    private String Title;
+    private String title;
     private String description;
     private Company client;
     private Double billRate;
