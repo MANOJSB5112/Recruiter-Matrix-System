@@ -4,6 +4,7 @@ package com.rms.rmsapplication.service;
 import com.rms.rmsapplication.dtos.JobCreationDto;
 import com.rms.rmsapplication.model.Address;
 import com.rms.rmsapplication.model.Job;
+import com.rms.rmsapplication.repos.AddressRepo;
 import com.rms.rmsapplication.repos.JobRepo;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -12,11 +13,13 @@ import org.springframework.stereotype.Service;
 @Primary
 public class JobServiceImpl implements JobService{
 
-    JobRepo jobRepo;
+    private final JobRepo jobRepo;
+    private final AddressRepo addressRepo;
 
-    JobServiceImpl(JobRepo jobRepo)
+    JobServiceImpl(JobRepo jobRepo, AddressRepo addressRepo)
     {
         this.jobRepo=jobRepo;
+        this.addressRepo = addressRepo;
     }
 
     @Override
@@ -34,6 +37,7 @@ public class JobServiceImpl implements JobService{
         address.setCountry(jobCreationDto.getCountry());
         job.setAddress(address);
         job.setIsActive(true);
+        addressRepo.save(address);
         jobRepo.save(job);
     }
 }
