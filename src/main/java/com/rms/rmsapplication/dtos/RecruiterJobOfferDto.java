@@ -5,11 +5,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SubmissionDto {
+public class RecruiterJobOfferDto {
     private Long submissionId;
+    private Long jobOfferId;
     private String candidateName;
     private String jobTitle;
     private String clientName;
     private String recruiterName;
-    private String feedback;
+    private String offerStatus;
 }

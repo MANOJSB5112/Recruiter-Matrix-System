@@ -9,9 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 public class InterviewRequestDto {
     private String description;
-
     private Long submissionId;
-
     private LocalDateTime interviewDate;
     private String interviewer;
     private String interviewMode;

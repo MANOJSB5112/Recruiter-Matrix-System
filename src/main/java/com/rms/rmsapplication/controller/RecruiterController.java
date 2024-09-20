@@ -1,24 +1,28 @@
 package com.rms.rmsapplication.controller;
 
-import com.rms.rmsapplication.dtos.CandidateCreationDto;
-import com.rms.rmsapplication.dtos.SubmissionCreationDto;
+import com.rms.rmsapplication.dtos.*;
 import com.rms.rmsapplication.service.CandidateService;
+import com.rms.rmsapplication.service.SearchService;
 import com.rms.rmsapplication.service.SubmissionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/recruiter")
 public class RecruiterController {
     private final SubmissionService submissionService;
     private final CandidateService candidateService;
+    private final SearchService searchService;
 
     RecruiterController(SubmissionService submissionService,
-                        CandidateService candidateService)
+                        CandidateService candidateService, SearchService searchService)
     {
         this.submissionService=submissionService;
         this.candidateService = candidateService;
+        this.searchService = searchService;
     }
     @PostMapping("/submissions")
     public ResponseEntity<String> newSubmission(SubmissionCreationDto submissionCreationDto)
@@ -44,18 +48,25 @@ public class RecruiterController {
     }
 
     @GetMapping("/submissions/{id}/all")
-    public void getAllSubmissionByRecruiter(@PathVariable Long id)
+    public ResponseEntity<List<SubmissionDto>> getAllSubmissionByRecruiter(@PathVariable Long id)
     {
-
+        List<SubmissionDto> submissions=searchService.getAllSubmissionByRecruiter(id);
+        return  ResponseEntity.ok(submissions);
     }
     @GetMapping("/interviews/{id}/all")
-    public void getAllInterviewsByRecruiter(@PathVariable Long id)
+    public ResponseEntity<List<InterviewDto>> getAllInterviewsByRecruiter(@PathVariable Long id)
     {
+        List<InterviewDto> interviews=searchService.getAllInterviewsByReruiter(id);
+
+        return ResponseEntity.ok(interviews);
 
     }
     @GetMapping("/joboffers/{id}/all")
-    public void getAllJobOffersByRecruiter(@PathVariable Long id)
+    public ResponseEntity<List<RecruiterJobOfferDto>> getAllJobOffersByRecruiter(@PathVariable Long id)
     {
+        List<RecruiterJobOfferDto> jobOffers=searchService.getAllJobOffersByRecruiter(id);
+
+        return ResponseEntity.ok(jobOffers);
 
     }
 
