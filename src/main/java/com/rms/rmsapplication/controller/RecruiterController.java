@@ -25,7 +25,7 @@ public class RecruiterController {
         this.searchService = searchService;
     }
     @PostMapping("/submissions")
-    public ResponseEntity<String> newSubmission(SubmissionCreationDto submissionCreationDto)
+    public ResponseEntity<String> newSubmission( @RequestBody SubmissionCreationDto submissionCreationDto)
     {
         try{
             submissionService.newSubmission(submissionCreationDto);
@@ -36,7 +36,7 @@ public class RecruiterController {
         }
     }
     @PostMapping("/candidate")
-    public ResponseEntity<String> newCandidate(CandidateCreationDto candidateCreationDto)
+    public ResponseEntity<String> newCandidate( @RequestBody CandidateCreationDto candidateCreationDto)
     {
         try{
             candidateService.newCandidate(candidateCreationDto);

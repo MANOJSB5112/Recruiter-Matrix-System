@@ -1,5 +1,6 @@
 package com.rms.rmsapplication.service;
 
+import com.rms.rmsapplication.dtos.EmployeeUpdateDto;
 import com.rms.rmsapplication.model.Employee;
 import com.rms.rmsapplication.repos.EmployeeRepo;
 import org.springframework.context.annotation.Primary;
@@ -23,6 +24,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setDesignation(designation);
         employeeRepo.save(employee);
         return true;
+    }
+
+    @Override
+    public void updateEmployee(Long id, EmployeeUpdateDto employeeUpdateDto) {
+
     }
 
 
