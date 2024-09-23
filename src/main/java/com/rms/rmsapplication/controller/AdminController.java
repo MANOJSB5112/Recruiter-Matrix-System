@@ -65,7 +65,13 @@ public class AdminController {
     @PatchMapping("/employee/{id}")
     public ResponseEntity<String> updateEmployee(@PathVariable Long id, @RequestBody EmployeeUpdateDto employeeUpdateDto)
     {
-
+        try{
+            employeeService.updateEmployee(id,employeeUpdateDto);
+            return ResponseEntity.status(HttpStatus.OK).body("Employee updated successfully");
+        }catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating Employee: " + e.getMessage());
+        }
     }
 
     @PatchMapping("/users/{id}")

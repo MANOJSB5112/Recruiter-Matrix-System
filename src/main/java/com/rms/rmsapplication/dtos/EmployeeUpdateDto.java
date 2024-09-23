@@ -12,6 +12,9 @@ import lombok.Setter;
 public class EmployeeUpdateDto {
     private String name;
     private String email;
-    private String position;
+    private String phoneNumber;
     private String designation;
+    private Long managerId;
+    private Long teamId;
+    private boolean currentEmployee;
 }
