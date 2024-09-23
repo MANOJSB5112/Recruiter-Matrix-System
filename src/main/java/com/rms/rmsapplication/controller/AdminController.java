@@ -25,13 +25,13 @@ public class AdminController {
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<String> createEmployee( @RequestBody EmpCreationDto empCreationDto)
+    public ResponseEntity<String> newEmployee( @RequestBody EmpCreationDto empCreationDto)
     {
         String name=empCreationDto.getName();
         String email=empCreationDto.getEmail();
         String phoneNumber=empCreationDto.getPhoneNumber();
         String designation=empCreationDto.getDesignation();
-        employeeService.createEmployee(name,email,phoneNumber,designation);
+        employeeService.newEmployee(name,email,phoneNumber,designation);
         String message="User Created Successful";
         return ResponseEntity.ok(message);
     }
@@ -75,11 +75,13 @@ public class AdminController {
     }
 
     @PatchMapping("/users/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody UserUpdateDto userUpdateDto)
-    {
-
+    public ResponseEntity<String> updateSystemUser(@PathVariable Long id, @RequestBody UserUpdateDto userUpdateDto) {
+        try {
+            systemUserService.updateSystemUser(id,userUpdateDto);
+            return ResponseEntity.status(HttpStatus.OK).body("SystemUser updated successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating SystemUser: " + e.getMessage());
+        }
     }
-
-
 
 }

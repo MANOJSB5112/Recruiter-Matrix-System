@@ -1,6 +1,7 @@
 package com.rms.rmsapplication.service;
 
 import com.rms.rmsapplication.dtos.UserCreationDto;
+import com.rms.rmsapplication.dtos.UserUpdateDto;
 import com.rms.rmsapplication.exceptions.EmployeeNotFoundException;
 import com.rms.rmsapplication.exceptions.SystemUserNotFoundException;
 import com.rms.rmsapplication.model.Employee;
@@ -30,6 +31,7 @@ public class SystemUserServiceImpl implements SystemUserService{
       {
           this.employeeRepo=employeeRepo;
           this.bCryptPasswordEncoder=bCryptPasswordEncoder;
+          this.rolesRepo=rolesRepo;
           this.userRepo=userRepo;
       }
     @Override
@@ -62,5 +64,27 @@ public class SystemUserServiceImpl implements SystemUserService{
         User user=u.get();
         user.setIsDeleted(true);
         userRepo.save(user);
+    }
+
+    @Override
+    public void updateSystemUser(Long id, UserUpdateDto userUpdateDto) {
+            Optional<User> userOptional = userRepo.findById(id);
+            if (userOptional.isEmpty()) {
+                throw new SystemUserNotFoundException("SystemUser not found with the id" + id);
+            }
+            User user = userOptional.get();
+
+            if (userUpdateDto.getName() != null) user.setName(userUpdateDto.getName());
+            if (userUpdateDto.getEmail() != null) user.setEmail(userUpdateDto.getEmail());
+            if (userUpdateDto.getPassword() != null) {
+                String hashedPassword = bCryptPasswordEncoder.encode(userUpdateDto.getPassword());
+                user.setHashedPassword(hashedPassword);
+            }
+
+            if (userUpdateDto.getRoleIds() != null) {
+                List<Roles> roles = rolesRepo.findAllById(userUpdateDto.getRoleIds());
+                user.setRoles(roles);
+            }
+            userRepo.save(user);
     }
 }

@@ -22,6 +22,8 @@ import org.springframework.security.oauth2.server.authorization.config.annotatio
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.oauth2.server.authorization.token.JwtEncodingContext;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
@@ -68,6 +70,11 @@ public class SecurityConfig {
             throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
+//                                .requestMatchers("/client").hasRole("Client")
+//                                .requestMatchers("/recruiter").hasRole("Recruiter")
+//                                .requestMatchers("/admin").hasRole("Admin")
+                                .requestMatchers("/recruiter/candidate").hasAuthority("SCOPE_RECRUITER")
+//                        .anyRequest().authenticated()
                         .anyRequest().permitAll()
                 )
                 .csrf().disable()
@@ -107,7 +114,31 @@ public class SecurityConfig {
 //
 //        return new InMemoryRegisteredClientRepository(oidcClient);
 //    }
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+            .authorizeHttpRequests(authorize -> authorize
+                    .requestMatchers("/client").hasRole("Client")
+                    .requestMatchers("/recruiter").hasRole("Recruiter")
+                    .requestMatchers("/admin").hasRole("Admin")
+                    .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2
+                    .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+            );
 
+    return http.build();
+}
+
+    @Bean
+    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        grantedAuthoritiesConverter.setAuthoritiesClaimName("roles"); // Ensure this matches your JWT claim
+
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+        return jwtAuthenticationConverter;
+    }
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
         KeyPair keyPair = generateRsaKey();

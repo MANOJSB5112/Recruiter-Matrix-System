@@ -24,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.teamRepo=teamRepo;
     }
     @Override
-    public boolean createEmployee(String name, String email, String phoneNumber, String designation) {
+    public boolean newEmployee(String name, String email, String phoneNumber, String designation) {
         Employee employee= Employee.builder().build();
         employee.setName(name);
         employee.setEmail(email);

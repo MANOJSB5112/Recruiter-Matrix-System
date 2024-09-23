@@ -10,5 +10,5 @@ import java.util.List;
 public interface RolesRepo extends JpaRepository<Roles,Long> {
 
     @Override
-    List<Roles> findAllById(Iterable<Long> longs);
+    List<Roles> findAllById(Iterable<Long> id);
 }

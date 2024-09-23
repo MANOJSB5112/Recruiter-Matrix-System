@@ -26,7 +26,7 @@ class RmsApplicationTests {
     void storeRegisteredClientIntoDB() {
                 RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("oidc-client")
-                .clientSecret("{noop}secret")
+                .clientSecret("$2a$16$KSNZ0mn655IxKH3KlxOdsO.3gAL7WlciVpd.hnXjoo.Mv35mMdFf2")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
